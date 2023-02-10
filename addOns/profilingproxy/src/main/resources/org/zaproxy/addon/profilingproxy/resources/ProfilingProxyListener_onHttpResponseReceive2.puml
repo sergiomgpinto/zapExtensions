@@ -1,0 +1,123 @@
+@startuml
+participant Actor
+Actor -> ProfilingProxyListener : onHttpResponseReceive
+activate ProfilingProxyListener
+ProfilingProxyListener -> ProfilingProxyManager : setResponseTime
+activate ProfilingProxyManager
+ProfilingProxyManager --> ProfilingProxyListener
+deactivate ProfilingProxyManager
+ProfilingProxyListener -> ProfilingProxyManager : profileMessage
+activate ProfilingProxyManager
+ProfilingProxyManager -> Parser : parseMessage
+activate Parser
+Parser --> ProfilingProxyManager
+deactivate Parser
+ProfilingProxyManager -> MetricsManager : runMetrics
+activate MetricsManager
+MetricsManager -> Metric : getResult
+activate Metric
+Metric --> MetricsManager
+deactivate Metric
+MetricsManager --> ProfilingProxyManager
+deactivate MetricsManager
+ProfilingProxyManager -> MetricsPanelManager : setMetricsDTO
+activate MetricsPanelManager
+MetricsPanelManager --> ProfilingProxyManager
+deactivate MetricsPanelManager
+ProfilingProxyManager -> MetricsPanelManager : updatePanel
+activate MetricsPanelManager
+MetricsPanelManager -> ProfilingProxyStatusPanel : updateMetricsTable
+activate ProfilingProxyStatusPanel
+ProfilingProxyStatusPanel -> MetricsPanelTableModel : updateColumn
+activate MetricsPanelTableModel
+MetricsPanelTableModel -> MetricDTO : getMeasures
+activate MetricDTO
+MetricDTO --> MetricsPanelTableModel
+deactivate MetricDTO
+
+alt isRequestSize
+MetricsPanelTableModel -> MetricsTableRecord : setRequestSizeMetricValue
+activate MetricsTableRecord
+MetricsTableRecord --> MetricsPanelTableModel
+deactivate MetricsTableRecord
+end
+
+alt isResponseSize
+MetricsPanelTableModel -> MetricsTableRecord : setResponseSizeMetricValue
+activate MetricsTableRecord
+MetricsTableRecord --> MetricsPanelTableModel
+deactivate MetricsTableRecord
+end
+alt isResponseTime
+MetricsPanelTableModel -> MetricsTableRecord : setResponseTimeMetricValue
+activate MetricsTableRecord
+MetricsTableRecord --> MetricsPanelTableModel
+deactivate MetricsTableRecord
+end
+MetricsPanelTableModel --> ProfilingProxyStatusPanel
+deactivate MetricsPanelTableModel
+ProfilingProxyStatusPanel --> MetricsPanelManager
+deactivate ProfilingProxyStatusPanel
+MetricsPanelManager --> ProfilingProxyManager
+deactivate MetricsPanelManager
+ProfilingProxyManager -> ImprovementsManager : runImprovements
+activate ImprovementsManager
+ImprovementsManager -> ImprovementsManager : mapToImprovement
+ImprovementsManager -> Message : isCSS
+activate Message
+Message --> ImprovementsManager
+deactivate Message
+ImprovementsManager -> Message : isJS
+activate Message
+Message --> ImprovementsManager
+deactivate Message
+ImprovementsManager -> Message : isPNG
+activate Message
+Message --> ImprovementsManager
+deactivate Message
+ImprovementsManager -> Improvement : getResult
+activate Improvement
+Improvement --> ImprovementsManager
+deactivate Improvement
+ImprovementsManager --> ProfilingProxyManager
+deactivate ImprovementsManager
+ProfilingProxyManager -> ImprovementsPanelManager : setImprovementsDTO
+activate ImprovementsPanelManager
+ImprovementsPanelManager -> ImprovementDTO : isImprovementIsPossible
+activate ImprovementDTO
+ImprovementDTO --> ImprovementsPanelManager
+deactivate ImprovementDTO
+ImprovementsPanelManager --> ProfilingProxyManager
+deactivate ImprovementsPanelManager
+ProfilingProxyManager -> ImprovementsPanelManager : updatePanel
+activate ImprovementsPanelManager
+ImprovementsPanelManager -> ProfilingProxyStatusPanel : updateImprovementsTable
+activate ProfilingProxyStatusPanel
+ProfilingProxyStatusPanel -> ImprovementDTO : getTypeOfImprovement
+activate ImprovementDTO
+ImprovementDTO --> ProfilingProxyStatusPanel
+deactivate ImprovementDTO
+ProfilingProxyStatusPanel -> ImprovementDTO : getSizeReductionToString
+activate ImprovementDTO
+ImprovementDTO --> ProfilingProxyStatusPanel
+deactivate ImprovementDTO
+ProfilingProxyStatusPanel -> ImprovementDTO : getUrl
+activate ImprovementDTO
+ImprovementDTO --> ProfilingProxyStatusPanel
+deactivate ImprovementDTO
+ProfilingProxyStatusPanel -> ImprovementDTO : getResponseBody
+activate ImprovementDTO
+ImprovementDTO --> ProfilingProxyStatusPanel
+deactivate ImprovementDTO
+ProfilingProxyStatusPanel -> ImprovementsPanelTableModel : addRecord
+activate ImprovementsPanelTableModel
+ImprovementsPanelTableModel --> ProfilingProxyStatusPanel
+deactivate ImprovementsPanelTableModel
+ProfilingProxyStatusPanel --> ImprovementsPanelManager
+deactivate ProfilingProxyStatusPanel
+ImprovementsPanelManager --> ProfilingProxyManager
+deactivate ImprovementsPanelManager
+ProfilingProxyManager --> ProfilingProxyListener
+deactivate ProfilingProxyManager
+return
+@enduml

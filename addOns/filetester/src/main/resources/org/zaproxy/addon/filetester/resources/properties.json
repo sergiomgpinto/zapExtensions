@@ -1,0 +1,11 @@
+{"OneDriveContentTypeForZipFiles": "application/zip",
+  "OneDriveContentTypeForExeFiles": "application/octet-stream",
+  "InvalidContentTypeException": "Invalid content type of http message.",
+  "InvalidBodyException": "Invalid body of http message.",
+  "ZIP": "zip",
+  "EXE": "exe",
+  "PNG": "png",
+  "JPEG": "jpeg",
+  "UNKNOWN": "unknown",
+  "EnableFileTesterExtension": "ui/fileTesterEnablerFile.txt"
+}

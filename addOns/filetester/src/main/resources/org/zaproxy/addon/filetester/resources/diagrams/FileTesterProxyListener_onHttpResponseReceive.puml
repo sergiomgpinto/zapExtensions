@@ -1,0 +1,126 @@
+@startuml
+participant Actor
+Actor -> FileTesterProxyListener : onHttpResponseReceive
+activate FileTesterProxyListener
+FileTesterProxyListener -> FileTesterManager : scanFileDownload
+activate FileTesterManager
+FileTesterManager -> FileTesterManager : isFileTesterExtensionEnabled
+activate FileTesterManager
+FileTesterManager -> JSONLoader : getLabel
+activate JSONLoader
+JSONLoader -> JSONLoader : toJson
+activate JSONLoader
+JSONLoader --> JSONLoader
+deactivate JSONLoader
+JSONLoader --> FileTesterManager
+deactivate JSONLoader
+FileTesterManager -> ResourceLoader : loadString
+activate ResourceLoader
+ResourceLoader --> FileTesterManager
+deactivate ResourceLoader
+FileTesterManager --> FileTesterManager
+deactivate FileTesterManager
+FileTesterManager -> Parser : getSuspiciousFileType
+activate Parser
+Parser -> GoogleDriveParser : getSuspiciousFileType
+activate GoogleDriveParser
+GoogleDriveParser --> Parser
+deactivate GoogleDriveParser
+Parser --> FileTesterManager
+deactivate Parser
+FileTesterManager -> Parser : getFileName
+activate Parser
+Parser -> GoogleDriveParser : getFileName
+activate GoogleDriveParser
+GoogleDriveParser --> Parser
+deactivate GoogleDriveParser
+Parser --> FileTesterManager
+deactivate Parser
+FileTesterManager -> ResourceLoader : saveBytes
+activate ResourceLoader
+ResourceLoader --> FileTesterManager
+deactivate ResourceLoader
+FileTesterManager -> ResourceLoader : getResourcesPath
+activate ResourceLoader
+ResourceLoader --> FileTesterManager
+deactivate ResourceLoader
+FileTesterManager -> FileTesterManager : performTests
+activate FileTesterManager
+FileTesterManager -> FileTests : setFilePath
+activate FileTests
+FileTests --> FileTesterManager
+deactivate FileTests
+FileTesterManager -> FileTests : setFileType
+activate FileTests
+FileTests --> FileTesterManager
+deactivate FileTests
+FileTesterManager -> FileTests : performTests
+activate FileTests
+FileTests -> RuleCheckerFactory : getRulesChecker
+activate RuleCheckerFactory
+RuleCheckerFactory --> FileTests
+deactivate RuleCheckerFactory
+FileTests -> Rule : checkRule
+activate Rule
+Rule --> FileTests
+deactivate Rule
+FileTests --> FileTesterManager
+deactivate FileTests
+FileTesterManager --> FileTesterManager
+deactivate FileTesterManager
+FileTesterManager -> ReportManager : addReportBatch
+activate ReportManager
+ReportManager -> ReportManager : addReport
+activate ReportManager
+ReportManager -> TestReport : getFileName
+activate TestReport
+TestReport --> ReportManager
+deactivate TestReport
+ReportManager -> ReportManager : () ->
+activate ReportManager
+ReportManager --> ReportManager
+deactivate ReportManager
+ReportManager -> TestReport : getFileName
+activate TestReport
+TestReport --> ReportManager
+deactivate TestReport
+ReportManager --> ReportManager
+deactivate ReportManager
+ReportManager -> TestReport : hasPassed
+activate TestReport
+TestReport --> ReportManager
+deactivate TestReport
+ReportManager -> ReportManager : writeReport
+activate ReportManager
+ReportManager -> TestReport : getResultString
+activate TestReport
+TestReport --> ReportManager
+deactivate TestReport
+ReportManager -> ResourceLoader : saveString
+activate ResourceLoader
+ResourceLoader --> ReportManager
+deactivate ResourceLoader
+ReportManager --> ReportManager
+deactivate ReportManager
+ReportManager --> FileTesterManager
+deactivate ReportManager
+FileTesterManager -> FileTesterManager : moveFile
+activate FileTesterManager
+FileTesterManager -> ResourceLoader : getResourcesPath
+activate ResourceLoader
+ResourceLoader --> FileTesterManager
+deactivate ResourceLoader
+FileTesterManager -> ResourceLoader : getResourcesPath
+activate ResourceLoader
+ResourceLoader --> FileTesterManager
+deactivate ResourceLoader
+FileTesterManager --> FileTesterManager
+deactivate FileTesterManager
+FileTesterManager -> FileTesterManager : showPopUp
+activate FileTesterManager
+FileTesterManager --> FileTesterManager
+deactivate FileTesterManager
+FileTesterManager --> FileTesterProxyListener
+deactivate FileTesterManager
+return
+@enduml

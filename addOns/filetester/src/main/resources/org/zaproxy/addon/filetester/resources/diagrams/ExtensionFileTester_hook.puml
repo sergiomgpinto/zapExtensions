@@ -1,0 +1,36 @@
+@startuml
+participant Actor
+Actor -> ExtensionFileTester : hook
+activate ExtensionFileTester
+ExtensionFileTester -> ExtensionAdaptor : hook
+activate ExtensionAdaptor
+ExtensionAdaptor --> ExtensionFileTester
+deactivate ExtensionAdaptor
+ExtensionFileTester -> ExtensionHook : addProxyListener
+activate ExtensionHook
+ExtensionHook --> ExtensionFileTester
+deactivate ExtensionHook
+ExtensionFileTester -> ExtensionAdaptor : hasView
+activate ExtensionAdaptor
+ExtensionAdaptor --> ExtensionFileTester
+alt hasView==True
+deactivate ExtensionAdaptor
+ExtensionFileTester -> Window : setVisible
+activate Window
+Window --> ExtensionFileTester
+deactivate Window
+ExtensionFileTester -> AbstractButton : addActionListener
+activate AbstractButton
+AbstractButton --> ExtensionFileTester
+deactivate AbstractButton
+ExtensionFileTester -> ExtensionHook : getHookMenu
+activate ExtensionHook
+ExtensionHook --> ExtensionFileTester
+deactivate ExtensionHook
+ExtensionFileTester -> ExtensionHookMenu : addToolsMenuItem
+activate ExtensionHookMenu
+ExtensionHookMenu --> ExtensionFileTester
+deactivate ExtensionHookMenu
+end
+return
+@enduml

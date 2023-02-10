@@ -1,0 +1,7 @@
+{"DB_PATH": "/zap-extensions/addOns/profilingproxy/src/main/resources/org/zaproxy/addon/profilingproxy/resources/database/",
+  "messagesFilePath": "messagesFile.txt",
+  "logFilePath": "profilingProxyLog.txt",
+  "jsAndCssResourcesPath": "/zap-extensions/addOns/profilingproxy/src/main/resources/org/zaproxy/addon/profilingproxy/resources/js_css_files/",
+  "resourcesPath": "/zap-extensions/addOns/profilingproxy/src/main/resources/org/zaproxy/addon/profilingproxy/resources/",
+  "pngResourcesPath": "/zap-extensions/addOns/profilingproxy/src/main/resources/org/zaproxy/addon/profilingproxy/resources/png/"
+}

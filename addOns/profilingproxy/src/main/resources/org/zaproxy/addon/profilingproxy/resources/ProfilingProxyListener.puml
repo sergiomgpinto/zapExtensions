@@ -1,0 +1,99 @@
+@startuml
+participant Actor
+Actor -> ProfilingProxyListener : onHttpResponseReceive
+activate ProfilingProxyListener
+ProfilingProxyListener -> ProfilingProxyManager : setResponseTime
+activate ProfilingProxyManager
+ProfilingProxyManager --> ProfilingProxyListener
+deactivate ProfilingProxyManager
+ProfilingProxyListener -> ProfilingProxyManager : profileMessage
+activate ProfilingProxyManager
+ProfilingProxyManager -> Parser : parseMessage
+activate Parser
+Parser --> ProfilingProxyManager
+deactivate Parser
+ProfilingProxyManager -> MetricsManager : runMetrics
+activate MetricsManager
+MetricsManager -> Metric : getResult
+activate Metric
+Metric --> MetricsManager
+deactivate Metric
+MetricsManager --> ProfilingProxyManager
+deactivate MetricsManager
+ProfilingProxyManager -> MetricsPanelManager : setMetricsDTO
+activate MetricsPanelManager
+MetricsPanelManager --> ProfilingProxyManager
+deactivate MetricsPanelManager
+ProfilingProxyManager -> MetricsPanelManager : updatePanel
+activate MetricsPanelManager
+MetricsPanelManager -> ProfilingProxyStatusPanel : setMetricsTable
+activate ProfilingProxyStatusPanel
+ProfilingProxyStatusPanel -> MetricDTO : getSmallest
+activate MetricDTO
+MetricDTO --> ProfilingProxyStatusPanel
+deactivate MetricDTO
+ProfilingProxyStatusPanel -> MetricDTO : getLargest
+activate MetricDTO
+MetricDTO --> ProfilingProxyStatusPanel
+deactivate MetricDTO
+ProfilingProxyStatusPanel -> MetricDTO : getAverage
+activate MetricDTO
+MetricDTO --> ProfilingProxyStatusPanel
+deactivate MetricDTO
+ProfilingProxyStatusPanel -> MetricDTO : getMedian
+activate MetricDTO
+MetricDTO --> ProfilingProxyStatusPanel
+deactivate MetricDTO
+ProfilingProxyStatusPanel -> MetricDTO : getFirstQuartile
+activate MetricDTO
+MetricDTO --> ProfilingProxyStatusPanel
+deactivate MetricDTO
+ProfilingProxyStatusPanel -> MetricDTO : getThirdQuartile
+activate MetricDTO
+MetricDTO --> ProfilingProxyStatusPanel
+deactivate MetricDTO
+ProfilingProxyStatusPanel -> MetricDTO : getStandardDeviation
+activate MetricDTO
+MetricDTO --> ProfilingProxyStatusPanel
+deactivate MetricDTO
+ProfilingProxyStatusPanel -> MetricDTO : isRequestSize
+activate MetricDTO
+MetricDTO --> ProfilingProxyStatusPanel
+deactivate MetricDTO
+ProfilingProxyStatusPanel -> MetricDTO : isResponseSize
+activate MetricDTO
+MetricDTO --> ProfilingProxyStatusPanel
+deactivate MetricDTO
+ProfilingProxyStatusPanel -> MetricDTO : isResponseTime
+activate MetricDTO
+MetricDTO --> ProfilingProxyStatusPanel
+deactivate MetricDTO
+ProfilingProxyStatusPanel --> MetricsPanelManager
+deactivate ProfilingProxyStatusPanel
+MetricsPanelManager --> ProfilingProxyManager
+deactivate MetricsPanelManager
+ProfilingProxyManager -> ImprovementsManager : runImprovements
+activate ImprovementsManager
+ImprovementsManager -> ImprovementsManager : mapToImprovement
+ImprovementsManager -> Message : isCSS
+activate Message
+Message --> ImprovementsManager
+deactivate Message
+ImprovementsManager -> Message : isJS
+activate Message
+Message --> ImprovementsManager
+deactivate Message
+ImprovementsManager -> Message : isPNG
+activate Message
+Message --> ImprovementsManager
+deactivate Message
+ImprovementsManager -> Improvement : getResult
+activate Improvement
+Improvement --> ImprovementsManager
+deactivate Improvement
+ImprovementsManager --> ProfilingProxyManager
+deactivate ImprovementsManager
+ProfilingProxyManager --> ProfilingProxyListener
+deactivate ProfilingProxyManager
+return
+@enduml

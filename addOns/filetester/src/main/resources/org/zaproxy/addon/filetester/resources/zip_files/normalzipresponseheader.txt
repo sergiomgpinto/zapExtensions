@@ -1,0 +1,22 @@
+HTTP/1.1 200 OK
+X-GUploader-UploadID: ADPycdsgc-IUBKwbCXcDYEyJO0vDKSXPsE3ETuZ5EAUGkmkCfe8jP05R4AKU86I6r4tzx7caSHSGc-VK9xB0xRkXKFg3nTZF1feT
+Expires: Sun, 04 Dec 2022 10:38:48 GMT
+Date: Sun, 04 Dec 2022 09:38:48 GMT
+Cache-Control: public, max-age=3600
+Last-Modified: Sun, 04 Dec 2022 09:38:44 GMT
+ETag: "76cde874a77005a94b4221a13a065199"
+x-goog-generation: 1670146724690093
+x-goog-metageneration: 3
+x-goog-stored-content-encoding: identity
+x-goog-stored-content-length: 221229
+Content-Type: application/x-zip
+Content-Disposition: attachment; filename="normal_zip.zip"
+x-goog-hash: crc32c=W8sXKg==
+x-goog-hash: md5=ds3odKdwBalLQiGhOgZRmQ==
+x-goog-expiration: Mon, 05 Dec 2022 09:38:44 GMT
+x-goog-storage-class: DURABLE_REDUCED_AVAILABILITY
+Accept-Ranges: bytes
+Content-Length: 221229
+Server: UploadServer
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+

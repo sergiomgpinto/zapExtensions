@@ -1,0 +1,5 @@
+user-pishingrule-unit-test:credentialseperator:v���A�S ��S�=:credentialseperator:N0TdVJdyfhkPjn1szdHk2SAt4D5J9RVNS383Vy8Khis=:mapseperator:www.google-unit-test.comendline
+user-unit-test:credentialseperator:`$:3��FFd�D:credentialseperator:1Ep7OVTuzND2nkWmmpZtnfY/O+PwmBWms7yzekMLBeE=:mapseperator:www.google-123-unittest.comendline
+tim:credentialseperator:s��çk�/I�)�W�:credentialseperator:urQUgcO89rV4T7akR0OHqJrQOmX7fOQiJZYBs2G555A=:mapseperator:https://www.facebook.comendline
+username:credentialseperator:oiAb��o&W޾���:credentialseperator:p4u2FDXVjoCDwTQJaMtwNpRViIfN6WV3t3SiyVnOagA=:mapseperator:www.google-123-unittest.comendline
+jonas:credentialseperator:�ٻ�;�P9��Y�L�:credentialseperator:WN/x2u1z09cHxw3iMkCKsj1YB1HtZE1z5kU9t06uSJ0=:mapseperator:https://www.github.comendline

@@ -1,0 +1,16 @@
+SOLUTIONS FOLDER
+
+This folder is for storing documents relating to delivered user stories, such as 
+design documents, test reports, documentation, etc...
+Design documents will help your team reaching a shared understanding about the
+design of your implementation and are also an important tool for communicating with 
+your team's designated teaching assistant. Feel free to use whatever tool is most
+convenient to you.  This might be Visual Paradigm, but can just as well be pictures 
+of a whiteboard or a drawing on paper. (As long as it's readable!)
+
+In this folder, please create subfolders named
+
+user_story_xx
+
+where xx is the number of the user story, e.g. '01'.
+

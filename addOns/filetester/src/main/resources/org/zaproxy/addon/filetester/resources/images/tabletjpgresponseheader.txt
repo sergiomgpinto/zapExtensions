@@ -1,0 +1,15 @@
+HTTP/1.1 200 OK
+Content-Type: image/jpeg
+Cache-Control: private, max-age=20
+Date: Sat, 03 Dec 2022 23:41:48 GMT
+X-XSS-Protection: 0
+Access-Control-Allow-Credentials: true
+Access-Control-Expose-Headers: Content-Disposition,Content-Length,X-Content-Type-Options
+Content-Disposition: attachment; filename="tablet.jpg"; filename*=UTF-8''tablet.jpg
+Content-Length: 12068095
+X-Content-Type-Options: nosniff
+Server: GSE
+Expires: Sat, 03 Dec 2022 23:41:48 GMT
+Set-Cookie: COMPASS=gmail=CpUBAAlriVfdDm89mvPUzttm04nDO170MgQlTO-RowG9g9ezWUexmm-1Z8IUa4RFnwnosNFauiDL-icLQshD10eH2tJGBqIJYPCIRVjmGtyLmDZdFgH6yh-taEhw5C-sZfDmmeD80NLreK5i3rD0IJYxnsYTrBPIRo8RmsEep90JXeX9oUnafL1t_iHK8FmMAuZ4zHLktqQQ79mvnAYarQEACWuJV6gQFKjkxGQqdbpHnbRY4kgMq0_xYyqb7n-9I1RiyxxAipjhqjrfM-pCZoUmuObIdh9fGd4vRev8HGeIjhoOf0r2PPvwdLEO9vP3NrHY1VfcfRQ6ZTz5agUxdQk4C5nBKp-d_GH-3WRL4t-vRquuFz-_DPBuyYzEe6bucTlVV7zJg7EUdCB9V-pNwOJFpxTEZIIdWEtvVddTEBAmbbB_1dBDtOrFrkh9Pw; expires=Tue, 13-Dec-2022 23:41:49 GMT; path=/attachment/u/0; Secure; HttpOnly; SameSite=none
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+

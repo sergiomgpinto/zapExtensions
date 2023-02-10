@@ -1,0 +1,4 @@
+Generated report:
+normal_zip.zip
+	rule: ZipBomb; result: false; info: Zip file passed the test.; 
+	rule: PwdProtectedZip; result: false; info: File passed test.; 

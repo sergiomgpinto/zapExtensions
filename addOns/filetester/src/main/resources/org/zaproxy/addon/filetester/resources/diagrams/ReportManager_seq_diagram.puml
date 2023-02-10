@@ -1,0 +1,14 @@
+@startuml
+participant Actor
+Actor -> ReportManager : addReportBatch
+activate ReportManager
+ReportManager -> ReportManager : addReport
+ReportManager -> ReportManager : writeReport
+ReportManager -> ResourceLoader : saveString
+activate ResourceLoader
+ResourceLoader --> ReportManager
+deactivate ResourceLoader
+ReportManager --> Actor
+deactivate ReportManager
+
+@enduml

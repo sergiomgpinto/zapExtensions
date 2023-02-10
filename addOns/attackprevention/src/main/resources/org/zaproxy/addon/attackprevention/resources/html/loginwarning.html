@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Phishing Prevention</title>
+
+    <style>
+        html, body {
+            position:fixed;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0;
+        }
+
+        .background {
+            /* The image used */
+            background-image: url("https://s28126.pcdn.co/blogs/ask-experian/wp-content/uploads/Person-Wearing-A-Gray-Hoodie-With-Face-Hidden-Typing-On-Computer.jpg");
+
+            /* Full height */
+            height: 100%;
+            width: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .first-txt {
+            position: absolute;
+            top: 50%;
+            left: 26%;
+            width: 48%;
+            height: 10%;
+            text-align: center;
+        }
+
+        #cancel_login_button {
+
+            background-color: #b1a0a0;
+            border-radius: 2px;
+            color: rgb(14, 3, 3);
+            width: 20%;
+            height: 10% ;
+            border: 2px solid rgb(14, 3, 3);
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 100%;
+            margin: 4px 2px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            /* position: absolute;
+            left: 1600px;
+            bottom: 10px; */
+            position:absolute;
+            z-index: 1;
+            right: 30%;
+            top: 80%
+        }
+
+        #continue_button {
+
+            background-color: #b1a0a0;
+            border: none;
+            border: 2px solid rgb(14, 3, 3);
+            border-radius: 2px;
+            width: 20%;
+            height: 10% ;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 100%;
+            margin: 4px 2px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            /* position: absolute;
+            left: 1600px;
+            bottom: 10px; */
+            position:absolute;
+            z-index: 1;
+            left: 30%;
+            top: 80%
+        }
+
+    </style>
+</head>
+
+
+
+
+<body>
+
+
+
+
+
+<div class="background">
+    <div class="first-txt">
+        <h1>WARNING: Your username and password will be sent to another website!</h1>
+
+        <h3> This might be phishing! Please be sure you want to continue. </h3>
+
+    </div>
+
+</div>
+
+
+
+<a href="GOBACK?action=cancel-login" id="cancel_link">
+    <button type="input" id="cancel_login_button">Cancel the login.</button>
+</a>
+
+<a href="CONTINUE?action=continue-login" id="continue_link">
+    <button type="input" id="continue_button">I still want to continue.</button>
+</a>
+
+
+
+
+
+</body>
+
+</html>

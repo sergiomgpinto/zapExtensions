@@ -1,0 +1,65 @@
+@startuml
+participant Actor
+Actor -> FileTesterProxyListener : onHttpResponseReceive
+activate FileTesterProxyListener
+FileTesterProxyListener -> FileTesterManager : scanFileDownload
+activate FileTesterManager
+FileTesterManager -> FileTesterManager : isFileTesterExtensionEnabled
+FileTesterManager -> ResourceLoader: loadString
+activate ResourceLoader
+ResourceLoader --> FileTesterManager
+deactivate ResourceLoader
+alt isFileTesterExtensionEnabled==True
+FileTesterManager -> Parser : getSuspiciousFileType
+activate Parser
+Parser -> GoogleDriveParser : getSuspiciousFileType
+activate GoogleDriveParser
+GoogleDriveParser --> Parser
+deactivate GoogleDriveParser
+Parser --> FileTesterManager
+deactivate Parser
+FileTesterManager -> Parser : getFileName
+activate Parser
+Parser -> GoogleDriveParser : getFileName
+activate GoogleDriveParser
+GoogleDriveParser --> Parser
+deactivate GoogleDriveParser
+Parser --> FileTesterManager
+deactivate Parser
+alt getFileName==null
+FileTesterManager --> FileTesterProxyListener
+end
+FileTesterManager -> ResourceLoader : saveBytes
+activate ResourceLoader
+ResourceLoader --> FileTesterManager
+deactivate ResourceLoader
+FileTesterManager -> FileTests : performTests
+activate FileTests
+FileTests -> FileType : createRules
+activate FileType
+FileType --> FileTests
+deactivate FileType
+FileTests -> Rule : checkRule
+activate Rule
+Rule --> FileTests
+deactivate Rule
+FileTests --> FileTesterManager
+deactivate FileTests
+FileTesterManager -> ReportManager : addReportBatch
+activate ReportManager
+ReportManager -> ReportManager : addReport
+ReportManager --> FileTesterManager
+deactivate ReportManager
+FileTesterManager -> FileTesterManager : moveFile
+alt isNotSafe==True
+FileTesterManager -> FileTesterManager : showPopUp
+FileTesterManager -> FileTesterPopupMenuUI: <<create>>
+activate FileTesterPopupMenuUI
+FileTesterPopupMenuUI --> FileTesterManager
+deactivate FileTesterPopupMenuUI
+end
+end
+FileTesterManager --> FileTesterProxyListener
+deactivate FileTesterManager
+return
+@enduml

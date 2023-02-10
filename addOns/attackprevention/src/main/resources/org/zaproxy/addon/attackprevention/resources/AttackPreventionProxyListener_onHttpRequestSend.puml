@@ -1,0 +1,134 @@
+@startuml
+participant Actor
+Actor -> AttackPreventionProxyListener : onHttpRequestSend
+activate AttackPreventionProxyListener
+AttackPreventionProxyListener -> AttackPreventionResponseManager : respond
+activate AttackPreventionResponseManager
+AttackPreventionResponseManager -> TyposquattingVulnerabilityResponseManager : respond
+activate TyposquattingVulnerabilityResponseManager
+TyposquattingVulnerabilityResponseManager -> Parser : parseMessage
+activate Parser
+Parser -> Parser : parseUsername
+activate Parser
+Parser -> FormParser : parseUsername
+activate FormParser
+FormParser --> Parser
+deactivate FormParser
+Parser --> Parser
+deactivate Parser
+Parser -> Parser : parsePassword
+activate Parser
+Parser -> FormParser : parsePassword
+activate FormParser
+FormParser --> Parser
+deactivate FormParser
+Parser --> Parser
+deactivate Parser
+Parser --> TyposquattingVulnerabilityResponseManager
+deactivate Parser
+TyposquattingVulnerabilityResponseManager -> Request : getCleanedUrl
+activate Request
+Request --> TyposquattingVulnerabilityResponseManager
+deactivate Request
+TyposquattingVulnerabilityResponseManager -> TyposquattingVulnerabilityResponseManager : saveUserChoices
+activate TyposquattingVulnerabilityResponseManager
+TyposquattingVulnerabilityResponseManager -> Request : getCleanedUrl
+activate Request
+Request --> TyposquattingVulnerabilityResponseManager
+deactivate Request
+TyposquattingVulnerabilityResponseManager -> Request : isToRememberUrl
+activate Request
+Request --> TyposquattingVulnerabilityResponseManager
+deactivate Request
+TyposquattingVulnerabilityResponseManager -> TyposquattingHistory : addLegitimate
+activate TyposquattingHistory
+TyposquattingHistory -> DBLoader : saveToDB
+activate DBLoader
+DBLoader --> TyposquattingHistory
+deactivate DBLoader
+TyposquattingHistory --> TyposquattingVulnerabilityResponseManager
+deactivate TyposquattingHistory
+TyposquattingVulnerabilityResponseManager -> AttackPreventionResponseManager : setHeader
+activate AttackPreventionResponseManager
+AttackPreventionResponseManager --> TyposquattingVulnerabilityResponseManager
+deactivate AttackPreventionResponseManager
+TyposquattingVulnerabilityResponseManager -> Request : isToRedirectUrl
+activate Request
+Request --> TyposquattingVulnerabilityResponseManager
+deactivate Request
+TyposquattingVulnerabilityResponseManager -> TyposquattingHistory : addVisited
+activate TyposquattingHistory
+TyposquattingHistory -> DBLoader : saveToDB
+activate DBLoader
+DBLoader --> TyposquattingHistory
+deactivate DBLoader
+TyposquattingHistory --> TyposquattingVulnerabilityResponseManager
+deactivate TyposquattingHistory
+TyposquattingVulnerabilityResponseManager -> AttackPreventionResponseManager : setHeader
+activate AttackPreventionResponseManager
+AttackPreventionResponseManager --> TyposquattingVulnerabilityResponseManager
+deactivate AttackPreventionResponseManager
+TyposquattingVulnerabilityResponseManager --> TyposquattingVulnerabilityResponseManager
+deactivate TyposquattingVulnerabilityResponseManager
+TyposquattingVulnerabilityResponseManager -> TyposquattingVulnerabilityResponseManager : evaluateVulnerability
+activate TyposquattingVulnerabilityResponseManager
+TyposquattingVulnerabilityResponseManager -> TypoSquattingVulnerability : evaluateVulnerability
+activate TypoSquattingVulnerability
+TypoSquattingVulnerability -> TyposquattingHistory : isLegitimate
+activate TyposquattingHistory
+TyposquattingHistory --> TypoSquattingVulnerability
+deactivate TyposquattingHistory
+TypoSquattingVulnerability -> TyposquattingHistory : getVisited
+activate TyposquattingHistory
+TyposquattingHistory --> TypoSquattingVulnerability
+deactivate TyposquattingHistory
+TypoSquattingVulnerability -> Rule : setKnownWebsite
+activate Rule
+Rule --> TypoSquattingVulnerability
+deactivate Rule
+TypoSquattingVulnerability -> Rule : setTypedWebsite
+activate Rule
+Rule --> TypoSquattingVulnerability
+deactivate Rule
+TypoSquattingVulnerability -> Rule : checkRule
+activate Rule
+Rule --> TypoSquattingVulnerability
+deactivate Rule
+TypoSquattingVulnerability -> RuleDTO : hasPassed
+activate RuleDTO
+RuleDTO --> TypoSquattingVulnerability
+deactivate RuleDTO
+TypoSquattingVulnerability --> TyposquattingVulnerabilityResponseManager
+deactivate TypoSquattingVulnerability
+TyposquattingVulnerabilityResponseManager -> TyposquattingHistory : addVisited
+activate TyposquattingHistory
+TyposquattingHistory -> DBLoader : saveToDB
+activate DBLoader
+DBLoader --> TyposquattingHistory
+deactivate DBLoader
+TyposquattingHistory --> TyposquattingVulnerabilityResponseManager
+deactivate TyposquattingHistory
+TyposquattingVulnerabilityResponseManager --> TyposquattingVulnerabilityResponseManager
+deactivate TyposquattingVulnerabilityResponseManager
+TyposquattingVulnerabilityResponseManager -> Request : getURL
+activate Request
+Request --> TyposquattingVulnerabilityResponseManager
+deactivate Request
+TyposquattingVulnerabilityResponseManager -> TyposquattingVulnerabilityResponseManager : showWarningPage
+activate TyposquattingVulnerabilityResponseManager
+TyposquattingVulnerabilityResponseManager -> TypoSquattingWarningCreator : createWarningPage
+activate TypoSquattingWarningCreator
+TypoSquattingWarningCreator --> TyposquattingVulnerabilityResponseManager
+deactivate TypoSquattingWarningCreator
+TyposquattingVulnerabilityResponseManager -> AttackPreventionResponseManager : setMsgBody
+activate AttackPreventionResponseManager
+AttackPreventionResponseManager --> TyposquattingVulnerabilityResponseManager
+deactivate AttackPreventionResponseManager
+TyposquattingVulnerabilityResponseManager --> TyposquattingVulnerabilityResponseManager
+deactivate TyposquattingVulnerabilityResponseManager
+TyposquattingVulnerabilityResponseManager --> AttackPreventionResponseManager
+deactivate TyposquattingVulnerabilityResponseManager
+AttackPreventionResponseManager --> AttackPreventionProxyListener
+deactivate AttackPreventionResponseManager
+return
+@enduml
