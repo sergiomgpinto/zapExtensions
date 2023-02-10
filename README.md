@@ -22,3 +22,11 @@ https://www.zaproxy.org/docs/developer/quick-start-build/
 
 [Gradle]: https://gradle.org/
 # zapExtensions
+Four new addOns were implemented to integrate with the ZAP app:
+- profilingproxy -> User Story 6
+- filetester -> User Story 7
+- typosquatting -> User Story 8
+- attackprevention -> User Story 9
+
+The design solutions for each are on the Submissions-design/solutions directory.
+
